@@ -1,0 +1,6 @@
+﻿  main3.cpp
+E:\KY\DXT\Paper\N bidders\Code\Stimulate\Stimulate\main3.cpp(29,10): warning C4476: "printf": 格式说明符中的类型字段字符“,”未知
+E:\KY\DXT\Paper\N bidders\Code\Stimulate\Stimulate\main3.cpp(29,10): warning C4778: “printf”: 格式字符串“%\n”未终止
+E:\KY\DXT\Paper\N bidders\Code\Stimulate\Stimulate\main3.cpp(61,10): warning C4476: "printf": 格式说明符中的类型字段字符“,”未知
+E:\KY\DXT\Paper\N bidders\Code\Stimulate\Stimulate\main3.cpp(61,10): warning C4778: “printf”: 格式字符串“%\n”未终止
+  Stimulate.vcxproj -> E:\KY\DXT\Paper\N bidders\Code\Stimulate\x64\Debug\Stimulate.exe
