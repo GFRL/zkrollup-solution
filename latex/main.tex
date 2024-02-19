@@ -1,6 +1,9 @@
 \documentclass{article}
 \usepackage{graphicx} % Required for inserting images
-
+\usepackage{indentfirst}% 缩进
+\usepackage{amsmath} %对齐
+\usepackage{hyperref} 
+\usepackage{color}
 \title{N bidders}
 \author{2200013213 }
 \date{January 2024}
@@ -12,7 +15,7 @@
 \section{Introduction}
 %N个工人，每个人被选中的权重为P_i（最终被选中的概率=P_i/提交块的人的P_i的和）,每个人提交块的花费为A_i(可变）,若被选中的收益函数为C_i(x)，其中x为在块上的花费。
 \par N workers, each one was selected with the probability function $P_i(x)$, with cost $A_i$, and profit function $C_i(x)$ . Everyone choose to compute the block with probability $Q_i$.
-\subsection{Simplification 1: N=2 $A_1,A_2$ was fixed, $P_i(x)=P_i$ is fixed}
+\subsection{Simplification 1:N=2 $A_1,A_2$ was fixed, $P_i(x)=P_i$ is fixed}
 %工人只有两个，每个人提交块的花费固定，因此被选中的收益函数也固定
 \par$E(income_1)=Q_1*(\frac{P_1}{P_2+P_1}Q_2*C(A_1)+(1-Q_2)C(A_1)-A_1)$
 \par$E(income_1)=Q_1(-\frac{P_2}{P_2+P_1}Q_2*C(A_1)+C(A_1)-A_1)$
@@ -115,7 +118,7 @@ So $E(income_1)=C(A_1)\frac{A_1-b}{A_1+A_2-2b}-A_1$
 %Scroll ，ZK_rollup的奖励
 %Scroll 区块生成暂时由中心化机构负责
 %polygon 与待合并的交易总数有关系，每一个交易打包是一样的。采用的是POS验证者竞争。
-\href{https://eips.ethereum.org/EIPS/eip-225}{EIP-225：Clique 权威证明共识协议 (ethereum.org)}  
+\href{https://eips.ethereum.org/EIPS/eip-225}{1}%{EIP-225：Clique 权威证明共识协议 (ethereum.org)}  
 %stupid miner?合作/不合作的比例
 \subsection{Baseline 1: polygon POS }
 \par simplification:
@@ -125,6 +128,8 @@ the $Ratio_1=\frac{E(income_1+income_2)}{E(income_1)+E(income_2)}=\frac{C_0(A_1+
 %Hard to deal with.It may decide by the algorithm and their protocol
 
 \subsection{Baseline 2: fixed transactions fee and fixed Time}
+%目前的问题:example1中C_suppose逐渐增长时的图像很奇怪
+%请参看example1的图片
 %诚实矿工越多，聪明人挣得越多，聪明人特别多与特别少都有合作的欲望。（聪明人特别有钱）
 %（聪明人特别没钱）诚实矿工越多，聪明人挣得越多；然而,聪明人增多，合作的欲望上升，聪明人再增多，合作欲望下降。分界线是两人资产和达到聪明人标准。
 We have computed that \par So $E(income_1)=(\frac{M}{A_1-b}+S)\frac{A_1-b}{A_1+A_2-2b}-A_1$
@@ -146,12 +151,6 @@ $=\frac{M}{(N_0+2)X+C}+\frac{(N_0+2)M+S((N_0+2)X+C)^2}{(N_0+2)^2((N_0+2)X+C)^2}$
 \par1)When both are not fulfill
 When $N_0+2->N_0+1$,$(N_0+2)X+C$ decrease a little($\frac{1}{(N_0+2)^2}$),$X$ increase a little($\frac{1}{(N_0+2)}$).
 \par So $E(income_{1+2})=(1+\frac{4}{N_0+2})E(income_1)$
-\begin{figure}
-    \centering
-    \includegraphics[width=1\linewidth]{3.png}
-    \caption{Enter Caption}
-    \label{fig:enter-label}
-\end{figure}
 \par2)When both are not fulfill
 We can just think $\frac{E(income_{1+2})}{E(income_1)+E(income_2)}=\frac{(\frac{S}{SUM}-1)(B_1+B_2)+\frac{M}{SUM}-b}{(\frac{S}{SUM}-1)(B_1+B_2)+2(\frac{M}{SUM}-b)}$
 %参考polygon，6000dollar/1年，取b=1（每天每人）B_average=19，B_SUM=2000,(100人）,S为固定收益，100亿*5*1%*1/365=137万,（S+M）=137万，按照白皮书4%~5%收益率，我们认为大概有4000个链，所以S+M=3000.所以收益率为
@@ -160,12 +159,6 @@ We can just think $\frac{E(income_{1+2})}{E(income_1)+E(income_2)}=\frac{(\frac{
 %S=2000，M=1000                       100%
 %S=1000，M=2000                      93.2%
 %最终取S=2100,M=900,期望收益每人每天为1.47368dollars，7.36847%
-\begin{figure}
-    \centering
-    \includegraphics[width=1\linewidth]{2.png}
-    \caption{Enter Caption}
-    \label{fig:enter-label}
-\end{figure}
 %当N_0很小，视为0
 Then when they do not cooperate
  $4X^2+(4C-S)X+C^2-SC+M=0$
@@ -175,13 +168,6 @@ Then when they do not cooperate
 \par1)When both are not fulfill
 $E(income_1)=E(income_2)=(\frac{M}{X}+S)\frac{X}{2X+C}-X-b$
 $E(income_{1+2})=(\frac{M}{x^{'}}+S)\frac{X^{'}}{X^{'}+C}-X^{'}-b$
-
-\begin{figure}
-    \centering
-    \includegraphics[width=1\linewidth]{1.png}
-    \caption{Enter Caption}
-    \label{fig:enter-label}
-\end{figure}
 \par2)When both are not fulfill
 We can just think $\frac{E(income_{1+2})}{E(income_1)+E(income_2)}=\frac{(\frac{S}{SUM}-1)(B_1+B_2)+\frac{M}{SUM}-b}{(\frac{S}{SUM}-1)(B_1+B_2)+2(\frac{M}{SUM}-b)}$
 %参考polygon，6000dollar/1年，取b=1（每天每人）B_average=19，B_SUM=2000,(100人）,S为固定收益，100亿*5*1%*1/365=137万,（S+M）=137万，按照白皮书4%~5%收益率，我们认为大概有4000个链，所以S+M=3000.所以收益率为
@@ -189,20 +175,8 @@ We can just think $\frac{E(income_{1+2})}{E(income_1)+E(income_2)}=\frac{(\frac{
 %S=2500,   M=500                     102.8%
 %S=2000，M=1000                       100%
 %S=1000，M=2000                      93.2%
-\begin{figure}
-    \centering
-    \includegraphics[width=1\linewidth]{4.png}
-    \caption{Enter Caption}
-    \label{fig:enter-label}
-
-\end{figure}
-\begin{figure}
-    \centering
-    \includegraphics[width=1\linewidth]{7.png}
-    \caption{Enter Caption}
-    \label{fig:enter-label}
-\end{figure}
 \subsection{Baseline 3: fixed transactions fee and fixed Time With $C(X)=\frac{MX}{X-b}$}
+%请参看example2的图片
 We have computed that
 \par So $E(income_1)=A_1(\frac{M}{\sum B_i}-1)$, is linear.
  \par
@@ -216,20 +190,33 @@ We have computed that
 \par Similarly, we have $((N_0+2)X)^2+2(N_0+2)X(C-\frac{M(N_0+1)}{2(N_0+2)})+(C-\frac{M}{2})^2=\frac{M^2}{4}-Mb$
 %参考polygon，6000dollar/1年，取b=1（每天每人）B_average=19，B_SUM=2000,(100人）取M=
 %最终取M=2040,期望收益每人每天为1.47368dollars（28/19），7.36847%
-\begin{figure}
-    \centering
-    \includegraphics[width=1\linewidth]{5.png}
-    \caption{Enter Caption}
-    \label{fig:enter-label}
-\end{figure}
-\begin{figure}
-    \centering
-    \includegraphics[width=1\linewidth]{6.png}
-    \caption{Enter Caption}
-    \label{fig:enter-label}
-\end{figure}
+
 %To solve:
 %取值？
+
+
+\section{2024/2/19}
+Now we talked about only use proof
+\par We know $P_i(x)=A_i$.
+\par $E(income_1)=C(A_1)\frac{A_1}{\sum A_i}-A_1$
+\par $E^{'}(income_1)=C^{'}(A_1)\frac{A_1}{\sum A_i}+C(A_1)\frac{\sum_{i\ne1}A_i}{(\sum A_i)^2}-1$
+\subsection{Baseline 1: $C(X)=\frac{M}{X}+S$}
+We have $E(income_1)=\frac{M}{\sum A_i}+A_i*(\frac{S}{\sum A_i}-1)$
+\par $E^{'}(income_1)= -\frac{M}{(\sum A_i)^2}+\frac{S}{\sum A_i}-1-A_i\frac{S}{(\sum A_i)^2}$
+ \begin{equation}
+\begin{aligned}
+&E^{'}(income_1)\ge 0
+\\\Longleftrightarrow&-M+S*(\sum_{i\ne 1}A_i)-(A_1+\sum_{i\ne 1}A_i)^2\ge 0
+\\\Longleftrightarrow& 0 \le A_1 \le -\sum_{i\ne 1} A_i+\sqrt{S\sum_{i\ne 1} A_i-M}
+\end{aligned}
+\end{equation}
+Similarly, we know 
+$((N+2)X+C)^2-S((N+1)X+C)+M=0$
+$(N+2)^2X^2+(2C(N+2)-(N+1)S)+M-CS=0$
+cooperate then
+$N->N-1$
+%We ask A_average=20,期望收益满足M/20 +S=40800/19
+%我们取S=2000;结果参见example3
 \end{document}
 
 
