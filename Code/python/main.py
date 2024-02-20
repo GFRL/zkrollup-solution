@@ -22,9 +22,12 @@ def solve_second(A,B,C):
     if delta<0 or A==0:
         return 0
     else:
-        return (-B +math.sqrt(delta))/(2*A)
+        CC=(-B +math.sqrt(delta))/(2*A)
+        if(CC<0):
+            CC=0
+        return CC
 
-def compute(type=0):
+def compute2(type=0):
     if type == 0 :#足够多钱
         X1 = solve_second((N + 2) * (N + 2), 2 * C * (N + 2) - M * (N + 1), C * C - M * C + M * b)
         X2 = solve_second((N + 1) * (N + 1), 2 * C * (N + 1) - M * N, C * C - M * C + M * b)
@@ -33,13 +36,33 @@ def compute(type=0):
         #if (E2 < 0):
          #   return
         #print("M=%.0lf,C=%.0lf(%.0lf),b=%.0lf\n", M, C, C / C_average, b)
-        LX1.append(X1+b)
-        LX2.append(X2+b)
+        if(E1<=0):
+            X1=0
+            E1 = 0
+            X11=0
+        if(E2<=0):
+            X2=0
+            E2 =0
+            X22=0
+        LX1.append(X1)
+        LX2.append(X2)
         LE1.append(E1)
         LE2.append(E2)
-        Lpercent1.append(E1*100/(X1+b))
-        Lpercent2.append(E2*100/(X2+b))
-        Lpercent.append(50*E2/E1)
+        if(X1==0):
+            Lpercent1.append(100)
+        else:
+            Lpercent1.append(E1*100/X1)
+        if(X2==0):
+            Lpercent2.append(100)
+        else:
+            Lpercent2.append(E2*100/X2)
+        if(X1 ==0 ):
+            if(X2==0):    
+                Lpercent.append(100)
+            else:
+                Lpercent.append(100)
+        else:
+            Lpercent.append(50*E2/E1)
     elif type == 1 :
         X1 = C_suppose - b
         X2 = 2 * C_suppose - b
@@ -59,17 +82,48 @@ def compute(type=0):
         E2 = (X2 + b) * ((M / (N * X22 + C +  X2)) - 1)
         #if (E2 < 0):
             #return
-        LX1.append(X1+b)
-        LX2.append(X2+b)
-        LX11.append(X11+b)
-        LX22.append(X22+b)
+        if(E1<=0):
+            X1=0
+            E1 = 0
+            X11=0
+        if(E2<=0):
+            X2=0
+            E2 =0
+            X22=0
+            # print("WHy! ",end="")
+            # print("E1= ",end="")
+            # print(E1,end="")
+            # print("E2= ",end="")
+            # print(E2,end="")
+            # print("E11= ",end="")
+            # print(E11,end="")
+            # print("E22= ",end="")
+            # print(E22)
+        #if (E2 < 0):   
+            #return
+        LX1.append(X1)
+        LX2.append(X2)
+        LX11.append(X11)
+        LX22.append(X22)
         LE1.append(E1)
         LE2.append(E2)
-        Lpercent1.append(E1*100/(X1+b))
-        Lpercent2.append(E2*100/(X2+b))
-        Lpercent.append(50*E2/E1)
+        if(X1==0):
+            Lpercent1.append(100)
+        else:
+            Lpercent1.append(E1*100/X1)
+        if(X2==0):
+            Lpercent2.append(100)
+        else:
+            Lpercent2.append(E2*100/X2)
+        if(X1 ==0 ):
+            if(X2==0):    
+                Lpercent.append(100)
+            else:
+                Lpercent.append(100)
+        else:
+            Lpercent.append(50*E2/E1)
 
-def compute2(type=0):
+def compute1(type=0):
     if type == 0 :#足够多钱
         X1 = solve_second((N + 2) * (N + 2), 2 * C * (N + 2) - (N + 1) * S, C * C - S * C + M)
         X2 = solve_second((N + 1) * (N + 1), 2 * C * (N + 1) - N * S, C * C - S * C + M)
@@ -78,13 +132,36 @@ def compute2(type=0):
         #if (E2 < 0):
          #   return
         #print("M=%.0lf,C=%.0lf(%.0lf),b=%.0lf\n", M, C, C / C_average, b)
-        LX1.append(X1+b)
-        LX2.append(X2+b)
+        if(E1<=0):
+            X1=0
+            E1 = 0
+            X11=0
+        if(E2<=0):
+            X2=0
+            E2 =0
+            X22=0
+        LX1.append(X1)
+        LX2.append(X2)
         LE1.append(E1)
         LE2.append(E2)
-        Lpercent1.append(E1*100/(X1+b))
-        Lpercent2.append(E2*100/(X2+b))
-        Lpercent.append(50*E2/E1)
+        if(X1==0):
+            Lpercent1.append(100)
+        else:
+            Lpercent1.append(E1*100/X1)
+        if(X2==0):
+            Lpercent2.append(100)
+        else:
+            Lpercent2.append(E2*100/X2)
+        if(X1 ==0 ):
+            if(X2==0):    
+                Lpercent.append(100)
+            else:
+                Lpercent.append(100)
+        else:
+            if(50*E2/E1>200):
+                Lpercent.append(200)
+            else:
+                Lpercent.append(50*E2/E1)
     elif type == 1 :
         X1 = C_suppose - b
         X2 = 2 * C_suppose - b
@@ -106,17 +183,51 @@ def compute2(type=0):
         E2 = ((M / X2) + S) * X2 / (N * X22 + C + X2) - X2 - b
         #if (E2 < 0):
             #return
-        LX1.append(X1+b)
-        LX2.append(X2+b)
-        LX11.append(X11+b)
-        LX22.append(X22+b)
+        if(E1<=0):
+            X1=0
+            E1 = 0
+            X11=0
+        if(E2<=0):
+            X2=0
+            E2 =0
+            X22=0
+            # print("WHy! ",end="")
+            # print("E1= ",end="")
+            # print(E1,end="")
+            # print("E2= ",end="")
+            # print(E2,end="")
+            # print("E11= ",end="")
+            # print(E11,end="")
+            # print("E22= ",end="")
+            # print(E22)
+        #if (E2 < 0):   
+            #return
+        LX1.append(X1)
+        LX2.append(X2)
+        LX11.append(X11)
+        LX22.append(X22)
         LE1.append(E1)
         LE2.append(E2)
-        Lpercent1.append(E1*100/(X1+b))
-        Lpercent2.append(E2*100/(X2+b))
-        Lpercent.append(50*E2/E1)
+        if(X1==0):
+            Lpercent1.append(100)
+        else:
+            Lpercent1.append(E1*100/X1)
+        if(X2==0):
+            Lpercent2.append(100)
+        else:
+            Lpercent2.append(E2*100/X2)
+        if(E1 ==0 ):
+            if(E2==0):    
+                Lpercent.append(100)
+            else:
+                Lpercent.append(100)
+        else:
+            if(50*E2/E1>200):
+                Lpercent.append(200)
+            else:
+                Lpercent.append(50*E2/E1)
 
-def compute3(type=0):
+def compute(type=0):
     if type == 0 :#足够多钱
         X1 = solve_second((N + 2) * (N + 2), 2 * C * (N + 2) - (N + 1) * S,  - S * C + M)
         X2 = solve_second((N + 1) * (N + 1), 2 * C * (N + 1) - N * S, - S * C + M)
@@ -125,17 +236,41 @@ def compute3(type=0):
         #if (E2 < 0):
          #   return
         #print("M=%.0lf,C=%.0lf(%.0lf),b=%.0lf\n", M, C, C / C_average, b)
+        if(E1<=0):
+            X1=0
+            E1 = 0
+            X11=0
+        if(E2<=0):
+            X2=0
+            E2 =0
+            X22=0
         LX1.append(X1)
         LX2.append(X2)
         LE1.append(E1)
         LE2.append(E2)
-        Lpercent1.append(E1*100/X1)
-        Lpercent2.append(E2*100/X2)
-        Lpercent.append(50*E2/E1)
+        if(X1==0):
+            Lpercent1.append(100)
+        else:
+            Lpercent1.append(E1*100/X1)
+        if(X2==0):
+            Lpercent2.append(100)
+        else:
+            Lpercent2.append(E2*100/X2)
+        if(X1 ==0 ):
+            if(X2==0):    
+                Lpercent.append(100)
+            else:
+                Lpercent.append(100)
+        else:
+            if(50*E2/E1>200):
+                Lpercent.append(200)
+            else:
+                Lpercent.append(50*E2/E1)
     elif type == 1 :
         X1 = C_suppose
         X2 = 2 * C_suppose
         X11 = solve_second((N + 2) * (N + 2), 2 * C * (N + 2) - (N + 1) * S, -S * C + M)
+
         X22 = solve_second((N + 1) * (N + 1), 2 * C * (N + 1) - N * S, -S * C + M)
         if (X1 > X11) :
             X1 = X11 
@@ -149,9 +284,26 @@ def compute3(type=0):
         else:
             X22= solve_second(N * N, 2 * (C + X2) * N - (N - 1) * S,
 				 - S * (C + X2) + M)
-        E1 = ((M / X1) + S) * X1 / (N * X11 + C + 2 * X1) - X1 
-        E2 = ((M / X2) + S) * X2 / (N * X22 + C + X2) - X2
-        #if (E2 < 0):
+        E1 = (M  + S * X1) / (N * X11 + C + 2 * X1) - X1 
+        E2 = (M  + S* X2) / (N * X22 + C + X2) - X2
+        if(E1<=0):
+            X1=0
+            E1 = 0
+            X11=0
+        if(E2<=0):
+            X2=0
+            E2 =0
+            X22=0
+            # print("WHy! ",end="")
+            # print("E1= ",end="")
+            # print(E1,end="")
+            # print("E2= ",end="")
+            # print(E2,end="")
+            # print("E11= ",end="")
+            # print(E11,end="")
+            # print("E22= ",end="")
+            # print(E22)
+        #if (E2 < 0):   
             #return
         LX1.append(X1)
         LX2.append(X2)
@@ -159,13 +311,28 @@ def compute3(type=0):
         LX22.append(X22)
         LE1.append(E1)
         LE2.append(E2)
-        Lpercent1.append(E1*100/X1)
-        Lpercent2.append(E2*100/X2)
-        Lpercent.append(50*E2/E1)
+        if(X1==0):
+            Lpercent1.append(100)
+        else:
+            Lpercent1.append(E1*100/X1)
+        if(X2==0):
+            Lpercent2.append(100)
+        else:
+            Lpercent2.append(E2*100/X2)
+        if(X1 ==0 ):
+            if(X2==0):    
+                Lpercent.append(100)
+            else:
+                Lpercent.append(100)
+        else:
+            if(50*E2/E1>200):
+                Lpercent.append(200)
+            else:
+                Lpercent.append(50*E2/E1)
 
 #b = 1; C = 19 * 98; C_suppose = 20; total_limit = 3000; C_average = 19;M = 2040
 #b = 1; C = 19 * 98; C_suppose = 20; total_limit = 3000;S = 2100; M = 900
-b=1;C=20*98;C_suppose=20;total_limit=3000;S=2000;M=20*(40800/19-S)
+b=1;C=20*98;C_suppose=20;total_limit=3000;S=400;M=20*(40800/19-S)
 mycolor=["b","c","g","k","m","r","y"]
 print("MX/(X-b)  very rich\n")
 plt.figure(1)
@@ -191,7 +358,7 @@ plt.subplot(1,2,2)
 plt.xlabel("Number of Other clever people")
 plt.ylabel("benifit percent of E2")
 for j in range(8):
-    C_suppose=5*(j+1)
+    C_suppose=11+j
     clear()
     for i in LN:
         N = i; C = (98 - i) * 19
@@ -230,15 +397,26 @@ plt.legend()
 plt.subplot(1,2,2)
 plt.plot(LN,Lpercent2,color='b',label="C_suppose1="+str(C_suppose))
 
+
+
 plt.figure(1)
-plt.savefig("./example3_detail tempetation.png")
+plt.savefig("./new example3_detail tempetation.png")
 
 plt.figure(2)
-plt.savefig("./example3_detail benifit.png")
+plt.savefig("./new example3_detail benifit.png")
 
 plt.figure(3)
-plt.savefig("./example3_detail benifit percent.png")
+plt.savefig("./new example3_detail benifit percent.png")
 
+
+# plt.figure(1)
+# plt.savefig("./new example3_simple tempetation.png")
+
+# plt.figure(2)
+# plt.savefig("./new example3_simple benifit.png")
+
+# plt.figure(3)
+# plt.savefig("./new example3_simple benifit percent.png")
 
 
 # plt.figure(4)
@@ -262,4 +440,4 @@ plt.savefig("./example3_detail benifit percent.png")
 #     compute()
 
 # plt.figure(4)
-# plt.savefig("./example3_detail amazing benifit percent.png")		
+# plt.savefig("./example4_detail amazing benifit percent.png")		
