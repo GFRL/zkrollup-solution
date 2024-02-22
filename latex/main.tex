@@ -200,6 +200,9 @@ Now we talked about only use proof
 \par We know $P_i(x)=A_i$.
 \par $E(income_1)=C(A_1)\frac{A_1}{\sum A_i}-A_1$
 \par $E^{'}(income_1)=C^{'}(A_1)\frac{A_1}{\sum A_i}+C(A_1)\frac{\sum_{i\ne1}A_i}{(\sum A_i)^2}-1$
+\par Goal 1: stop cooperation
+$C(A_1+A_2)(A_1+A_2)<C(A_1)A_1+C(A_2)(A_2)$
+So 
 \subsection{Baseline 1: $C(X)=\frac{M}{X}+S$}
 We have $E(income_1)=\frac{M}{\sum A_i}+A_i*(\frac{S}{\sum A_i}-1)$
 \par $E^{'}(income_1)= -\frac{M}{(\sum A_i)^2}+\frac{S}{\sum A_i}-1-A_i\frac{S}{(\sum A_i)^2}$
@@ -212,11 +215,19 @@ We have $E(income_1)=\frac{M}{\sum A_i}+A_i*(\frac{S}{\sum A_i}-1)$
 \end{equation}
 Similarly, we know 
 $((N+2)X+C)^2-S((N+1)X+C)+M=0$
-$(N+2)^2X^2+(2C(N+2)-(N+1)S)+M-CS=0$
+$(N+2)^2X^2+(2C(N+2)-(N+1)S)X+C^2+M-CS=0$
 cooperate then
 $N->N-1$
 %We ask A_average=20,期望收益满足M/20 +S=40800/19
 %我们取S=2000;结果参见example3
+\subsection{Baseline 2: $C(X)=M-SX$}
+\par Then $E(income_1)=(-SA_1+M)\frac{A_1}{\sum A_i}-A_1$ 
+\par $E^{'}(income_1)=-\frac{SA_1}{\sum A_i}+\frac{\sum_{i\ne1}A_i}{(\sum A_i)^2}(-SA_1+M)-1$
+So $(S+1)X^2+2(S+1)CX+C^2-CM\le 0(C=\sum_{i\ne 1}A_i)$
+So
+So as long as $M>\sum_{i\ne1} A_i$, all user will try their best.
+So $1$
+
 \end{document}
 
 
