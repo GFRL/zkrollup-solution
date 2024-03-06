@@ -27,101 +27,6 @@ def solve_second(A,B,C):
             CC=0
         return CC
 
-def compute2(type=0):
-    if type == 0 :#足够多钱
-        X1 = solve_second((N + 2) * (N + 2), 2 * C * (N + 2) - M * (N + 1), C * C - M * C + M * b)
-        X2 = solve_second((N + 1) * (N + 1), 2 * C * (N + 1) - M * N, C * C - M * C + M * b)
-        E1 = (X1+b) * ((M / ((N + 2) * X1 + C)) - 1)#平衡点运算的时候进行了变形，X_i实际上是X_i-b;
-        E2 = (X2+b) * ((M / ((N + 1) * X2 + C)) - 1)
-        #if (E2 < 0):
-         #   return
-        #print("M=%.0lf,C=%.0lf(%.0lf),b=%.0lf\n", M, C, C / C_average, b)
-        if(E1<=0):
-            X1=0
-            E1 = 0
-            X11=0
-        if(E2<=0):
-            X2=0
-            E2 =0
-            X22=0
-        LX1.append(X1)
-        LX2.append(X2)
-        LE1.append(E1)
-        LE2.append(E2)
-        if(X1==0):
-            Lpercent1.append(100)
-        else:
-            Lpercent1.append(E1*100/X1)
-        if(X2==0):
-            Lpercent2.append(100)
-        else:
-            Lpercent2.append(E2*100/X2)
-        if(X1 ==0 ):
-            if(X2==0):    
-                Lpercent.append(100)
-            else:
-                Lpercent.append(100)
-        else:
-            Lpercent.append(50*E2/E1)
-    elif type == 1 :
-        X1 = C_suppose - b
-        X2 = 2 * C_suppose - b
-        X11 = solve_second((N + 2) * (N + 2), 2 * C * (N + 2) - M * (N + 1), C * C - M * C + M * b)
-        X22 = solve_second((N + 1) * (N + 1), 2 * C * (N + 1) - M * (N ), C * C - M * C + M * b)
-        if (X1 > X11) :
-            X1 = X11 
-          #  return
-        else:
-            X11 = solve_second(N * N, 2 * (C + 2 * X1) * N - M * (N - 1), (C + 2 * X1) * (C + 2 * X1) - M * (C + 2 * X1) + M * b)
-        if (X2 > X22) :
-            X2 = X22 
-           # return
-        else:
-            X22= solve_second(N * N, 2 * (C + X2) * N - M * (N - 1), (C + X2) * (C + X2) - M * (C + X2) + M * b)
-        E1 = (X1+b) * ((M / (N * X11 + C + 2 * X1)) - 1)
-        E2 = (X2 + b) * ((M / (N * X22 + C +  X2)) - 1)
-        #if (E2 < 0):
-            #return
-        if(E1<=0):
-            X1=0
-            E1 = 0
-            X11=0
-        if(E2<=0):
-            X2=0
-            E2 =0
-            X22=0
-            # print("WHy! ",end="")
-            # print("E1= ",end="")
-            # print(E1,end="")
-            # print("E2= ",end="")
-            # print(E2,end="")
-            # print("E11= ",end="")
-            # print(E11,end="")
-            # print("E22= ",end="")
-            # print(E22)
-        #if (E2 < 0):   
-            #return
-        LX1.append(X1)
-        LX2.append(X2)
-        LX11.append(X11)
-        LX22.append(X22)
-        LE1.append(E1)
-        LE2.append(E2)
-        if(X1==0):
-            Lpercent1.append(100)
-        else:
-            Lpercent1.append(E1*100/X1)
-        if(X2==0):
-            Lpercent2.append(100)
-        else:
-            Lpercent2.append(E2*100/X2)
-        if(X1 ==0 ):
-            if(X2==0):    
-                Lpercent.append(100)
-            else:
-                Lpercent.append(100)
-        else:
-            Lpercent.append(50*E2/E1)
 
 def compute1(type=0):
     if type == 0 :#足够多钱
@@ -226,6 +131,102 @@ def compute1(type=0):
                 Lpercent.append(200)
             else:
                 Lpercent.append(50*E2/E1)
+
+def compute2(type=0):
+    if type == 0 :#足够多钱
+        X1 = solve_second((N + 2) * (N + 2), 2 * C * (N + 2) - M * (N + 1), C * C - M * C + M * b)
+        X2 = solve_second((N + 1) * (N + 1), 2 * C * (N + 1) - M * N, C * C - M * C + M * b)
+        E1 = (X1+b) * ((M / ((N + 2) * X1 + C)) - 1)#平衡点运算的时候进行了变形，X_i实际上是X_i-b;
+        E2 = (X2+b) * ((M / ((N + 1) * X2 + C)) - 1)
+        #if (E2 < 0):
+         #   return
+        #print("M=%.0lf,C=%.0lf(%.0lf),b=%.0lf\n", M, C, C / C_average, b)
+        if(E1<=0):
+            X1=0
+            E1 = 0
+            X11=0
+        if(E2<=0):
+            X2=0
+            E2 =0
+            X22=0
+        LX1.append(X1)
+        LX2.append(X2)
+        LE1.append(E1)
+        LE2.append(E2)
+        if(X1==0):
+            Lpercent1.append(100)
+        else:
+            Lpercent1.append(E1*100/X1)
+        if(X2==0):
+            Lpercent2.append(100)
+        else:
+            Lpercent2.append(E2*100/X2)
+        if(X1 ==0 ):
+            if(X2==0):    
+                Lpercent.append(100)
+            else:
+                Lpercent.append(100)
+        else:
+            Lpercent.append(50*E2/E1)
+    elif type == 1 :
+        X1 = C_suppose - b
+        X2 = 2 * C_suppose - b
+        X11 = solve_second((N + 2) * (N + 2), 2 * C * (N + 2) - M * (N + 1), C * C - M * C + M * b)
+        X22 = solve_second((N + 1) * (N + 1), 2 * C * (N + 1) - M * (N ), C * C - M * C + M * b)
+        if (X1 > X11) :
+            X1 = X11 
+          #  return
+        else:
+            X11 = solve_second(N * N, 2 * (C + 2 * X1) * N - M * (N - 1), (C + 2 * X1) * (C + 2 * X1) - M * (C + 2 * X1) + M * b)
+        if (X2 > X22) :
+            X2 = X22 
+           # return
+        else:
+            X22= solve_second(N * N, 2 * (C + X2) * N - M * (N - 1), (C + X2) * (C + X2) - M * (C + X2) + M * b)
+        E1 = (X1+b) * ((M / (N * X11 + C + 2 * X1)) - 1)
+        E2 = (X2 + b) * ((M / (N * X22 + C +  X2)) - 1)
+        #if (E2 < 0):
+            #return
+        if(E1<=0):
+            X1=0
+            E1 = 0
+            X11=0
+        if(E2<=0):
+            X2=0
+            E2 =0
+            X22=0
+            # print("WHy! ",end="")
+            # print("E1= ",end="")
+            # print(E1,end="")
+            # print("E2= ",end="")
+            # print(E2,end="")
+            # print("E11= ",end="")
+            # print(E11,end="")
+            # print("E22= ",end="")
+            # print(E22)
+        #if (E2 < 0):   
+            #return
+        LX1.append(X1)
+        LX2.append(X2)
+        LX11.append(X11)
+        LX22.append(X22)
+        LE1.append(E1)
+        LE2.append(E2)
+        if(X1==0):
+            Lpercent1.append(100)
+        else:
+            Lpercent1.append(E1*100/X1)
+        if(X2==0):
+            Lpercent2.append(100)
+        else:
+            Lpercent2.append(E2*100/X2)
+        if(X1 ==0 ):
+            if(X2==0):    
+                Lpercent.append(100)
+            else:
+                Lpercent.append(100)
+        else:
+            Lpercent.append(50*E2/E1)
 
 def compute3(type=0):
     if type == 0 :#足够多钱
@@ -439,7 +440,7 @@ def compute(type=0):
 
 #b=1;C=20*98;C_suppose=20;total_limit=3000;S=2000;M=20*(40800/19-S)
 
-b=1;C=20*98;C_suppose=20;total_limit=3000;S=0.1;M=(40800/19-20*S)
+b=1;C=20*98;C_suppose=20;total_limit=3000;S=0.00;M=(40800/19-20*S)
 mycolor=["b","c","g","k","m","r","y"]
 print("MX/(X-b)  very rich\n")
 plt.figure(1)
